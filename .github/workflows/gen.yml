@@ -1,0 +1,19 @@
+name: AutoGenFlag
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gen Flag
+        run: |
+          echo "the_flag=`curl ${{secrets.GEN_FLAG}}`" >> $GITHUB_ENV
+      - name: Comment and Close Issue
+        uses: peter-evans/close-issue@v1
+        with:
+          comment: |
+            ${{secrets.MESSAGE}}
+            ${{env.the_flag}}

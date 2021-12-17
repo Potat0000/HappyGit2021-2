@@ -17,3 +17,5 @@ jobs:
           comment: |
             ${{secrets.MESSAGE}}
             ${{env.the_flag}}
+            change something
+
